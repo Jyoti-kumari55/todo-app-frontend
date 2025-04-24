@@ -150,6 +150,30 @@ const Home = () => {
     }
   }, [searchQuery, allNotes]);
 
+  const updateIsPinned = async (noteData) => {
+    const noteId = noteData._id;
+    try {
+      const response = await axios.put(
+        `${BACKENDS_URL}/api/todo/editIsPinned/${noteId}`,
+        { isPinned: !noteId.isPinned },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.data && response.data.note) {
+        showToastMsgHandler("Note updated Successfully.");
+
+        getAllNotes();
+        // onClose();
+      }
+    } catch (error) {
+      console.log("Error occured while creating a note: ", error);
+    }
+  };
+
   return (
     <>
       <Navbar
@@ -178,7 +202,7 @@ const Home = () => {
                 onDelete={() => {
                   deleteANote(item);
                 }}
-                onPinNote={() => {}}
+                onPinNote={() => {updateIsPinned(item)}}
               />
             ))}
           </div>
