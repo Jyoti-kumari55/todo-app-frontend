@@ -55,7 +55,7 @@ const Login = () => {
       if (response.data && response.data.token) {
         localStorage.setItem("token", response.data.token);
         setSuccessMsg(response.data.message);
-        console.log("1212: ", response.data.userInfo, "1313: ", response.data.message);
+        // console.log("1212: ", response.data.userInfo, "1313: ", response.data.message);
 
         setTimeout(() => {
           navigate("/dashboard");

@@ -155,7 +155,7 @@ const Home = () => {
     try {
       const response = await axios.put(
         `${BACKENDS_URL}/api/todo/editIsPinned/${noteId}`,
-        { isPinned: !noteId.isPinned },
+        { isPinned: !noteData.isPinned },
         {
           headers: {
             Authorization: `Bearer ${token}`,
